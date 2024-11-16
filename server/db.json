@@ -1,0 +1,36 @@
+{
+  "users": [
+    {
+      "firstname": "John",
+      "lastname": "Doe",
+      "email": "a@gmail.com",
+      "password": "$2a$10$u1CJE.c5sT5kRuPnk5yMsuqbbP47k/YNTZtyS9xu3fyl/tFQLPO9e",
+      "id": 84903028,
+      "avatar": "",
+      "role": true,
+      "status": true,
+      "created_at": "2024-08-15",
+      "updated_at": "",
+      "phone": "+84912123123",
+      "address": "Ba Đình - Hà Nội"
+    },
+    {
+      "firstname": "Hà",
+      "lastname": "Văn",
+      "email": "c@gmail.com",
+      "phone": "+84947721353",
+      "address": "Ba Đình - Hà Nội",
+      "id": 25046312,
+      "password": "$2a$10$L3RAR16tbJxlnbOkTeJ9Q.lVINHJR1fEzJ5pAq2wChfwnKyZN1s9i",
+      "role": false,
+      "status": true,
+      "avatar": "",
+      "created_at": "2024-11-16",
+      "updated_at": "2024-11-16"
+    }
+  ],
+  "category": [],
+  "products": [],
+  "orders": [],
+  "order_details": []
+}
