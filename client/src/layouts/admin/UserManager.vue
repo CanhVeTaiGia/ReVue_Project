@@ -223,7 +223,7 @@ const changeUserStatus = async (id) => {
 const searchUser = () => {
   store.dispatch("fetchUsers", {
     limit: limit.value,
-    currentPage: currentPage.value,
+    page: currentPage.value,
     sort: sort.value,
     search: searchQuery.value,
   });
@@ -232,7 +232,7 @@ const changeSort = () => {
   sort.value = sort.value === "asc" ? "desc" : "asc";
   store.dispatch("fetchUsers", {
     limit: limit.value,
-    currentPage: currentPage.value,
+    page: currentPage.value,
     sort: sort.value,
     search: searchQuery.value,
   });
@@ -241,7 +241,7 @@ const nextPage = () => {
   currentPage.value++;
   store.dispatch("fetchUsers", {
     limit: limit.value,
-    currentPage: currentPage.value,
+    page: currentPage.value,
     sort: sort.value,
     search: searchQuery.value,
   });
@@ -251,7 +251,7 @@ const prevPage = () => {
   currentPage.value--;
   store.dispatch("fetchUsers", {
     limit: limit.value,
-    currentPage: currentPage.value,
+    page: currentPage.value,
     sort: sort.value,
     search: searchQuery.value,
   });
@@ -261,7 +261,7 @@ const store = useStore();
 onMounted(() => {
   store.dispatch("fetchUsers", {
     limit: limit.value,
-    currentPage: currentPage.value,
+    page: currentPage.value,
     sort: sort.value,
     search: searchQuery.value,
   });

@@ -118,7 +118,7 @@
             <span class="flex-grow text-sm">Orders</span>
           </router-link>
         </li>
-        
+
         <li class="mt-10">
           <button
             @click="logOut"
@@ -151,7 +151,9 @@ import { useRouter } from "vue-router";
 const router = useRouter();
 const logOut = () => {
   localStorage.removeItem("token");
-  router.back();
+  router.push({
+    path: "/admin-login",
+  });
 };
 </script>
 

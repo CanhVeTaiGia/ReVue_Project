@@ -29,8 +29,40 @@
       "updated_at": "2024-11-16"
     }
   ],
-  "category": [],
-  "products": [],
+  "category": [
+    {
+      "id": 1,
+      "name": "Tiểu thuyết",
+      "description": "Tiểu thuyết là sản phẩm trình bày các thông tin cơ bản về một sản phẩm, về chủng loại, thương hiệu, mô tả, đặc điểm, hạn sử dụng, và các điều khoản",
+      "status": true
+    },
+    {
+      "id": 2,
+      "name": "Truyện Tranh",
+      "description": "Sách truyện là sản phẩm trình bày các thông tin cơ bản về một sản phẩm, về chủng loại, thương hiệu, mô tả, đặc điểm, hạn sử dụng, và các điều khoản",
+      "status": true
+    },
+    {
+      "id": 3,
+      "name": "Light Novel",
+      "description": "Light Novel là sách truyện manga, có phần truyện tranh và phần truyện hình ảnh.",
+      "status": true
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Tây du ký",
+      "description": "Tây Du Ký là bộ tiểu thuyết thần thoại của lịch sử cổ đại Trung Quốc. Truyện mang tính chất hư cấu kể về bốn thầy trò Đường Tăng trên con đường trắc trở đi thỉnh kinh.",
+      "price": 10000,
+      "quantity": 10,
+      "image": "sach-tieu-thuyet-1.jpg",
+      "category_id": 1,
+      "stock": 10,
+      "created_at": "2024-08-15",
+      "updated_at": "2024-08-15"
+    }
+  ],
   "orders": [],
   "order_details": []
 }

@@ -66,6 +66,14 @@ const routes = [
       },
     ],
   },
+  {
+    path: "/admin-login",
+    name: "admin-login",
+    component: () =>
+      import(
+        /* webpackChunkName: "admin-login"*/ "@/views/auth/Adminlogin.vue"
+      ),
+  },
 ];
 
 const router = createRouter({
