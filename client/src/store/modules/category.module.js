@@ -4,6 +4,7 @@ import {
   updatedCategoryApi,
   filteredCategoriesApi,
   deleteCategoryApi,
+  getCategoryApi,
 } from "@/api/categoryApi";
 
 export const categoryModule = {
@@ -36,9 +37,7 @@ export const categoryModule = {
   },
   actions: {
     async filteredCategories({ commit }, { limit, page, sort, search, sortByStatus }) {
-      try {
-        // console.log(sortByStatus);
-            
+      try {   
         const res = await filteredCategoriesApi(limit, page, sort, search, sortByStatus);
         commit("SET_CATEGORIES", res);
       } catch (error) {
@@ -53,9 +52,9 @@ export const categoryModule = {
         console.error(error);
       }
     },
-    async fetchCategory({ commit }, category) {
+    async fetchCategory({ commit }, id) {
       try {
-        const res = await getCategoriesApi(category);
+        const res = await getCategoryApi(id);
         commit("SET_CATEGORY", res);
       } catch (error) {
         console.error(error);

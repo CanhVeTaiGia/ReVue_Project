@@ -4,13 +4,15 @@
       <div class="bg-white p-6 rounded-lg shadow-lg">
         <div class="flex justify-between mb-4">
           <button
-            @click="showForm('', 'add')"
+            @click="showAddForm()"
             class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 transition duration-300"
           >
             + Add Category
           </button>
           <div class="flex gap-2">
             <input
+              v-model="search"
+              @input="handleSort"
               type="text"
               class="border border-gray-300 px-4 py-2 rounded-lg outline-none focus:ring-blue-500 focus:border-blue-500"
               placeholder="Search by name"
@@ -51,7 +53,10 @@
           <tbody>
             <tr
               v-if="categories"
-              v-for="(item, index) in categories"
+              v-for="(item, index) in filtercategories.slice(
+                currentPage,
+                currentPage + limit
+              )"
               :key="item.id"
               class="text-center hover:bg-gray-50 cursor-pointer"
             >
@@ -74,14 +79,13 @@
                 </button>
               </td>
               <td class="px-4 py-2"
-                >{{
-                  item.description.split(" ").slice(0, 16).join(" ")
-                }}
-                ...</td
+                >{{ item.description.split(" ").slice(0, 16).join(" ") }}
+                {{ item.description.length > 16 ? "..." : "" }}</td
               >
               <td class="px-4 py-2">
                 <div class="flex items-center justify-center gap-2">
                   <font-awesome-icon
+                    @click="showEditForm(item)"
                     class="text-xl text-orange-500"
                     icon="fa-solid fa-pen"
                   ></font-awesome-icon>
@@ -108,7 +112,7 @@
             :class="[
               'py-1 border rounded',
               {
-                'bg-gray-400 cursor-not-allowed opacity-50': currentPage === 1,
+                'bg-gray-400 cursor-not-allowed opacity-50': currentPage === 0,
                 'bg-blue-500 text-white': currentPage > 1,
               },
             ]"
@@ -119,25 +123,27 @@
             ></font-awesome-icon>
           </button>
           <button
-            v-for="page in totalPages"
+            v-for="(page, index) in Math.ceil(filtercategories.length / 8)"
             :key="page"
-            @click="currentPage = page"
+            @click="currentPage = index * limit"
             :class="[
               'px-3 py-1 border rounded',
-              { 'bg-blue-500 text-white': currentPage === page },
+              { 'bg-blue-500 text-white': currentPage  === index * limit },
             ]"
           >
-            {{ page }}
+            {{ index + 1 }}
+            <!-- {{ currentPage }} -->
           </button>
           <button
             @click="nextPage"
-            :disabled="currentPage === categories.length - 1"
+            :disabled="currentPage >= categories.length - limit"
             :class="[
               'py-1 border rounded',
               {
                 'bg-gray-400 cursor-not-allowed opacity-50':
-                  currentPage === categories.length - 1,
-                'bg-blue-500 text-white': currentPage < categories.length,
+                  currentPage >= categories.length - limit,
+                'bg-blue-500 text-white':
+                  currentPage < categories.length - limit,
               },
             ]"
           >
@@ -149,32 +155,77 @@
         </div>
       </div>
     </main>
+    <teleport v-if="isShowForm.value" to="body">
+      <CategoryForm :hideForm="hideForm" :category="isShowForm.category">
+        <template #header>
+          {{ isShowForm.category ? "Edit Category" : "Add Category" }}
+        </template>
+        <template #submit>
+          {{ isShowForm.category ? "Edit" : "Add" }}
+        </template>
+      </CategoryForm>
+    </teleport>
   </div>
 </template>
 <script setup>
+import CategoryForm from "@/components/modal/CategoryForm.vue";
 import Swal from "sweetalert2";
 import { computed, onMounted, reactive, ref } from "vue";
 import { useStore } from "vuex";
 
 const isShowForm = reactive({
+  category: null,
   value: false,
-  type: "add",
 });
+
+const showAddForm = () => {
+  isShowForm.category = null;
+  isShowForm.value = true;
+};
+const showEditForm = (item) => {
+  isShowForm.category = item;
+  isShowForm.value = true;
+};
+const hideForm = () => {
+  isShowForm.value = false;
+  isShowForm.id = null;
+};
 const store = useStore();
-const currentPage = ref(1);
-const limit = ref(10);
+const currentPage = ref(0);
+const limit = ref(8);
 const sort = ref("asc");
 const search = ref("");
-const filterByStatus = ref(true);
-const handleSort = () => {
-  store.dispatch("filteredCategories", {
-    limit: limit.value,
-    page: currentPage.value,
-    sort: sort.value,
-    search: search.value,
-    sortByStatus: filterByStatus.value,
-  });
+const filterByStatus = ref(null);
+
+const categories = computed(() => store.getters.getCategories);
+const filtercategories = computed(() => {
+  if (categories.value) {
+    return categories.value
+      .filter((category) =>
+        category.name.toLowerCase().includes(search.value.toLowerCase())
+      )
+      .filter(
+        (category) =>
+          filterByStatus.value === null ||
+          category.status === filterByStatus.value
+      )
+      .sort((a, b) => {
+        if (sort.value === "asc") {
+          return a.name.localeCompare(b.name);
+        } else {
+          return b.name.localeCompare(a.name);
+        }
+      });
+  }
+  return [];
+});
+
+const prevPage = () => {
+  if (currentPage.value > 1) {
+    currentPage.value -= limit.value;
+  }
 };
+
 const changeCategoryStatus = (category) => {
   Swal.fire({
     title: `Bạn có chắc muốn ${
@@ -194,16 +245,6 @@ const changeCategoryStatus = (category) => {
   });
 };
 
-const handleSortByStatus = () => {
-  store.dispatch("filteredCategories", {
-    limit: limit.value,
-    page: currentPage.value,
-    sort: sort.value,
-    search: search.value,
-    sortByStatus: filterByStatus.value,
-  });
-};
-
 const deleteCategory = (id) => {
   Swal.fire({
     title: "Bạn có chắc muốn xóa danh mục này?",
@@ -219,14 +260,13 @@ const deleteCategory = (id) => {
 };
 
 onMounted(async () => {
-  await store.dispatch("filteredCategories", {
-    limit: limit.value,
-    page: currentPage.value,
-    sort: sort.value,
-    search: search.value,
-    sortByStatus: filterByStatus.value,
-  });
+  await store.dispatch("fetchCategories");
 });
-const categories = computed(() => store.getters.getCategories);
+
+const nextPage = () => {
+  if (currentPage.value < categories.value.length - limit.value) {
+    currentPage.value += limit.value;
+  }
+};
 </script>
 <style scoped></style>

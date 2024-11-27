@@ -1,5 +1,5 @@
 <template>
-  <menu class="w-52 bg-zinc-900 text-white min-h-screen p-4 shadow-md">
+  <menu class="w-52 bg-zinc-900 text-white min-h-screen p-4 sticky top-0 left-0 shadow-md">
     <h2 class="text-2xl font-semibold mb-8 text-gray-100 text-center">Admin</h2>
     <nav>
       <ul class="space-y-4">

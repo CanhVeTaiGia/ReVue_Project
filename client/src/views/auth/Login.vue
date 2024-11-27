@@ -6,7 +6,7 @@
       @submit.prevent="handleLogin"
       class="p-[16px] w-[600px] rounded bg-black border border-[#111]"
     >
-      <h2 class="text-[40px] font-[600] p-[16px] text-center">Đăng nhập</h2>
+      <h2 class="text-[40px] font-[600] p-[16px] text-center">Login</h2>
 
       <div class="flex flex-col mb-[40px] relative px-[50px] gap-[10px]">
         <label class="text-[20px]">Email</label>
@@ -21,20 +21,20 @@
           v-if="empty.email && !user.email"
           class="text-[red] text-[14px] bottom-[-30px] absolute"
         >
-          Email không được để trống
+        Email is requied
         </p>
         <p
           v-else-if="wrong"
           class="text-[red] text-[14px] bottom-[-30px] absolute"
         >
-          Email hoặc mật khẩu không đúng
+          Incorrct email or password
         </p>
       </div>
 
       <div class="flex flex-col mb-[40px] relative px-[50px] gap-[10px]">
-        <label class="text-[20px]">Mật khẩu</label>
+        <label class="text-[20px]">Password</label>
         <input
-          placeholder="Mật khẩu"
+          placeholder="Password"
           v-model="user.password"
           @input="empty.password = true"
           class="w-full pl-[10px] outline-none rounded p-[10px] border-[1px] bg-[#222]"
@@ -44,27 +44,27 @@
           v-if="empty.password && !user.password"
           class="text-[red] text-[14px] bottom-[-30px] absolute"
         >
-          Mật khẩu không được để trống
+          Password is required
         </p>
         <p
           v-else-if="wrong"
           class="text-[red] text-[14px] bottom-[-30px] absolute"
         >
-          Email hoặc mật khẩu không đúng
+          Incorrrect email or password
         </p>
       </div>
 
       <div class="px-[50px] relative mt-[50px] mb-[30px]">
         <button
           class="bg-[#08f] text-[16px] font-[700] text-black rounded w-full p-[10px]"
-          >Đăng nhập</button
+          >Login</button
         >
       </div>
 
       <div class="flex px-[50px] justify-center gap-1">
-        <p class="text-[#bbb]">Chưa có tài khoản</p>
+        <p class="text-[#bbb]">Don't have a account?</p>
         <p @click="toRegister" class="hover:underline cursor-pointer"
-          >Đăng ký</p
+          >Register</p
         >
       </div>
     </v-form>
@@ -126,7 +126,8 @@ const handleLogin = async () => {
     return;
   }
   return Swal.fire({
-    title: "Đăng nhập thành công!",
+    title: "Success!",
+    text: "Logged in successfully!",
     icon: "success",
     confirmButtonText: "OK",
   }).then((res) => {

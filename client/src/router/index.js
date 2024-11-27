@@ -12,23 +12,67 @@ const routes = [
     component: () =>
       import(/*webChunkName: "register"*/ "@/views/auth/Register.vue"),
   },
-  // {
-  //   path: "",
-  //   name: "home",
-  //   redirect: "",
-  //   component: () =>
-  //     import(/* webpackChunkName: "home"*/ "@/views/user/Home.vue"),
-  //   children: [
-  //     {
-  //       path: "",
-  //       name: "main",
-  //       component: () =>
-  //         import(
-  //           /* webpackChunkName: "main"*/ "@/components/layout/MainContent.vue"
-  //         ),
-  //     },
-  //   ],
-  // },
+  {
+    path: "",
+    name: "main",
+    redirect: "",
+    component: () =>
+      import(/* webpackChunkName: "main"*/ "@/views/user/Main.vue"),
+    children: [
+      {
+        path: "",
+        name: "home",
+        component: () =>
+          import(/* webpackChunkName: "home"*/ "@/layouts/user/HomePage.vue"),
+      },
+      {
+        path: "category",
+        name: "category",
+        component: () =>
+          import(
+            /* webpackChunkName: "category"*/ "@/layouts/user/Category.vue"
+          ),
+      },
+      {
+        path: "edit-profile",
+        name: "edit-profile",
+        component: () =>
+          import(
+            /* webpackChunkName: "edit-profile"*/ "@/layouts/user/EditProfile.vue"
+          ),
+      },
+      {
+        path: "product-detail/:id",
+        name: "product-detail",
+        component: () =>
+          import(
+            /* webpackChunkName: "product"*/ "@/layouts/user/ProductDetail.vue"
+          ),
+      },
+      {
+        path: "cart",
+        name: "cart",
+        component: () =>
+          import(/* webpackChunkName: "cart"*/ "@/layouts/user/Cart.vue"),
+      },
+      {
+        path: "products",
+        name: "products",
+        component: () =>
+          import(
+            /* webpackChunkName: "products"*/ "@/layouts/user/Products.vue"
+          ),
+      },
+      {
+        path: "proceed-order",
+        name: "proceed-order",
+        component: () =>
+          import(
+            /* webpackChunkName: "proceed-order"*/ "@/layouts/user/ProceedOrder.vue"
+          ),
+      }
+    ],
+  },
   {
     path: "/home",
     redirect: "/",
@@ -64,16 +108,36 @@ const routes = [
             /* webpackChunkName: "category-manager"*/ "@/layouts/admin/CategoryManager.vue"
           ),
       },
+      {
+        path: "product-manager",
+        name: "product-manager",
+        component: () =>
+          import(
+            /* webpackChunkName: "product-manager"*/ "@/layouts/admin/ProductManager.vue"
+          ),
+      },
+      {
+        path: "order-manager",
+        name: "order-manager",
+        component: () =>
+          import(
+            /* webpackChunkName: "order-manager"*/ "@/layouts/admin/OrderManager.vue"
+          ),
+      },
     ],
   },
   {
-    path: "/admin-login",
-    name: "admin-login",
+    path: "/auth",
+    name: "auth",
     component: () =>
-      import(
-        /* webpackChunkName: "admin-login"*/ "@/views/auth/Adminlogin.vue"
-      ),
+      import(/* webpackChunkName: "admin-login"*/ "@/views/auth/Auth.vue"),
   },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'NotFound',
+    component: () =>
+      import(/* webpackChunkName: "not-found"*/ "@/views/NotFound.vue"),
+  }
 ];
 
 const router = createRouter({

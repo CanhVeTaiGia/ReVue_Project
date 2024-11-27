@@ -8,6 +8,14 @@
       "id": 84903028,
       "avatar": "",
       "role": true,
+      "cart": [
+        {
+          "id": 9691551106859,
+          "productId": 2,
+          "price": 30000,
+          "quantity": 1
+        }
+      ],
       "status": true,
       "created_at": "2024-08-15",
       "updated_at": "",
@@ -26,7 +34,135 @@
       "status": true,
       "avatar": "",
       "created_at": "2024-11-16",
-      "updated_at": "2024-11-16"
+      "updated_at": "2024-11-16",
+      "cart": []
+    },
+    {
+      "firstname": "Lương",
+      "lastname": "Hà",
+      "email": "b@gmail.com",
+      "phone": "+849123132331",
+      "address": "Thành Lâm",
+      "id": 96382970,
+      "password": "$2a$10$jHvl786ephf17XlaeW.tOuBTuONQAO2KgGGZkTwkKMV4F.eEkDdTS",
+      "role": false,
+      "status": true,
+      "avatar": "",
+      "created_at": "2024-11-24",
+      "updated_at": "2024-11-24",
+      "cart": [
+        {
+          "id": 2113620866492,
+          "productId": 1,
+          "price": 20000,
+          "quantity": 9
+        }
+      ]
+    },
+    {
+      "firstname": "Ngọc",
+      "lastname": "Hương",
+      "email": "ngoc@gmail.com",
+      "phone": "+84984985855",
+      "address": "Quận 3 - TP.HCM",
+      "id": 47383929,
+      "password": "$2a$10$E5vMi7t34lTPRgocdCUPUEkxBTSFL7kgfdg8I7EBXjFgmn4tL7dG6",
+      "role": false,
+      "status": true,
+      "avatar": "",
+      "created_at": "2024-11-20",
+      "updated_at": "2024-11-20",
+      "cart": []
+    },
+    {
+      "firstname": "Lâm",
+      "lastname": "Khánh",
+      "email": "lamkhanh@gmail.com",
+      "phone": "+84987654321",
+      "address": "Quận 10 - TP.HCM",
+      "id": 18274683,
+      "password": "$2a$10$0cMn46Y5zMNL64sTr9FYlEs5gZofWI.3YzFwFUzQ3Eu7gZkTYp9kK",
+      "role": true,
+      "status": true,
+      "avatar": "",
+      "created_at": "2024-09-18",
+      "updated_at": "",
+      "cart": []
+    },
+    {
+      "firstname": "Bảo",
+      "lastname": "Duy",
+      "email": "bao@gmail.com",
+      "phone": "+84983210056",
+      "address": "Long An",
+      "id": 58293084,
+      "password": "$2a$10$Y7nt.xJ7BQY81paVkd.z3pZG1c9oVgNKcGzj.tAf7MwtJqZ43I5DS",
+      "role": false,
+      "status": true,
+      "avatar": "",
+      "created_at": "2024-07-25",
+      "updated_at": "",
+      "cart": []
+    },
+    {
+      "firstname": "Hồng",
+      "lastname": "Nhung",
+      "email": "hongnhung@gmail.com",
+      "phone": "+84983468750",
+      "address": "Hải Phòng",
+      "id": 72845938,
+      "password": "$2a$10$1wbJgkDWZ8XgzJlrPb.C9nsEK1AO7ZZ5pQYfWGeKBfLO5r3VXN5lK",
+      "role": true,
+      "status": true,
+      "avatar": "",
+      "created_at": "2024-08-05",
+      "updated_at": "",
+      "cart": []
+    },
+    {
+      "firstname": "Đào",
+      "lastname": "Thanh",
+      "email": "dao@gmail.com",
+      "phone": "+84982345678",
+      "address": "Bình Dương",
+      "id": 49382045,
+      "password": "$2a$10$RP5Wp8z/Tvgc1dA.K0aPEvXykTjODHJ0btw/vhnvnHl3bXIuXyHy",
+      "role": false,
+      "status": true,
+      "avatar": "",
+      "created_at": "2024-09-30",
+      "updated_at": "2024-09-30",
+      "cart": []
+    },
+    {
+      "firstname": "Thanh",
+      "lastname": "Thảo",
+      "email": "thanhthao@gmail.com",
+      "phone": "+84983647922",
+      "address": "Cần Thơ",
+      "id": 84037621,
+      "password": "$2a$10$OZ5Ti1e6A4g7FOAZGpQXYH1Isxq4E3QLqUowE9kIMYZn.Zmgj9kZG",
+      "role": true,
+      "status": true,
+      "avatar": "",
+      "created_at": "2024-06-20",
+      "updated_at": "2024-06-20",
+      "cart": []
+    },
+    {
+      "firstname": "Vũ",
+      "lastname": "Tuấn",
+      "email": "vu@gmail.com",
+      "phone": "+84983476554",
+      "address": "Hà Nam",
+      "id": 96483029,
+      "password": "$2a$10$VdH9RtsP6E0Rll1JtWTM4ZizP6izT4fxISy.68rXYwsVNiZtso7Aq",
+      "role": false,
+      "status": true,
+      "avatar": "",
+      "created_at": "2024-11-01",
+      "updated_at": "2024-11-01",
+      "cart": []
     }
   ],
   "category": [
@@ -47,22 +183,170 @@
       "name": "Light Novel",
       "description": "Light Novel là sách truyện manga, có phần truyện tranh và phần truyện hình ảnh.",
       "status": true
+    },
+    {
+      "id": 4,
+      "name": "Khoa Học Viễn Tưởng",
+      "description": "Khoa học viễn tưởng là thể loại tiểu thuyết dựa trên những giả tưởng về công nghệ, vũ trụ và các hiện tượng không thể giải thích được.",
+      "status": true
+    },
+    {
+      "id": 5,
+      "name": "Lịch Sử",
+      "description": "Sách lịch sử là những tác phẩm nghiên cứu và trình bày các sự kiện, nhân vật trong quá khứ, nhằm giúp hiểu rõ hơn về quá trình phát triển của con người.",
+      "status": true
+    },
+    {
+      "id": 6,
+      "name": "Văn Học Lãng Mạn",
+      "description": "Văn học lãng mạn tập trung vào những câu chuyện tình yêu, cảm xúc sâu sắc và sự kết nối giữa các nhân vật.",
+      "status": true
+    },
+    {
+      "id": 7,
+      "name": "Phiêu Lưu",
+      "description": "Tiểu thuyết phiêu lưu là thể loại kể về những chuyến hành trình đầy thử thách, khám phá thế giới và vượt qua nguy hiểm.",
+      "status": true
+    },
+    {
+      "id": 8,
+      "name": "Hài Kịch",
+      "description": "Hài kịch là thể loại sách mang tính chất giải trí, pha trộn giữa sự hài hước và những tình huống vui nhộn.",
+      "status": true
+    },
+    {
+      "id": 9,
+      "name": "Kinh Dị",
+      "description": "Kinh dị là thể loại tiểu thuyết mang đến những yếu tố rùng rợn, kỳ bí, tạo cảm giác sợ hãi cho người đọc.",
+      "status": true
+    },
+    {
+      "id": 10,
+      "name": "Chính Trị",
+      "description": "Sách chính trị phân tích các vấn đề xã hội, nhà nước, và các mô hình quyền lực, lãnh đạo trên toàn cầu.",
+      "status": true
     }
   ],
   "products": [
     {
       "id": 1,
-      "name": "Tây du ký",
-      "description": "Tây Du Ký là bộ tiểu thuyết thần thoại của lịch sử cổ đại Trung Quốc. Truyện mang tính chất hư cấu kể về bốn thầy trò Đường Tăng trên con đường trắc trở đi thỉnh kinh.",
-      "price": 10000,
-      "quantity": 10,
-      "image": "sach-tieu-thuyet-1.jpg",
-      "category_id": 1,
+      "name": "Tiểu thuyết cổ điển",
+      "categoryId": 1,
+      "description": "Một tác phẩm nổi tiếng trong thể loại tiểu thuyết, khám phá những câu chuyện với các nhân vật đa chiều.",
+      "price": 25000,
+      "stock": 15,
+      "rating": [],
+      "reviews": 0,
+      "createdAt": "2024-11-21",
+      "updatedAt": "2024-11-21",
+      "image": ""
+    },
+    {
+      "id": 2,
+      "name": "Truyện Tranh Marvel",
+      "categoryId": 2,
+      "description": "Một bộ truyện tranh về các siêu anh hùng nổi tiếng trong vũ trụ Marvel.",
+      "price": 30000,
+      "stock": 24,
+      "rating": [],
+      "reviews": 0,
+      "createdAt": "2024-11-21",
+      "updatedAt": "2024-11-21",
+      "image": ""
+    },
+    {
+      "id": 3,
+      "name": "Light Novel: Sword Art Online",
+      "categoryId": 3,
+      "description": "Câu chuyện về một thế giới ảo, nơi những game thủ phải chiến đấu để sống sót.",
+      "price": 35000,
+      "stock": 30,
+      "rating": [],
+      "reviews": 0,
+      "createdAt": "2024-11-21",
+      "updatedAt": "2024-11-21",
+      "image": ""
+    },
+    {
+      "id": 4,
+      "name": "Khoa Học Viễn Tưởng: 2001: A Space Odyssey",
+      "categoryId": 4,
+      "description": "Một tác phẩm khoa học viễn tưởng huyền thoại của Arthur C. Clarke, với các khám phá vũ trụ vượt ngoài giới hạn.",
+      "price": 45000,
       "stock": 10,
-      "created_at": "2024-08-15",
-      "updated_at": "2024-08-15"
+      "rating": [],
+      "reviews": 0,
+      "createdAt": "2024-11-21",
+      "updatedAt": "2024-11-21",
+      "image": ""
+    },
+    {
+      "id": 5,
+      "name": "Lịch Sử: Đế Chế Rôma",
+      "categoryId": 5,
+      "description": "Cuốn sách cung cấp cái nhìn sâu sắc về sự hình thành và sụp đổ của đế chế Rôma.",
+      "price": 40000,
+      "stock": 20,
+      "rating": [],
+      "reviews": 0,
+      "createdAt": "2024-11-21",
+      "updatedAt": "2024-11-21",
+      "image": ""
+    },
+    {
+      "id": 6,
+      "name": "Văn Học Lãng Mạn: Những Đoạn Đường Tình",
+      "categoryId": 6,
+      "description": "Một câu chuyện tình yêu đầy cảm xúc, xen lẫn giữa nỗi đau và niềm vui của tình yêu đích thực.",
+      "price": 28000,
+      "stock": 18,
+      "rating": [],
+      "reviews": 0,
+      "createdAt": "2024-11-21",
+      "updatedAt": "2024-11-21",
+      "image": ""
+    },
+    {
+      "id": 7,
+      "name": "Phiêu Lưu: Khám Phá Đại Dương",
+      "categoryId": 7,
+      "description": "Cuộc hành trình kỳ thú qua các đại dương để khám phá những điều chưa từng được biết đến.",
+      "price": 30000,
+      "stock": 12,
+      "rating": [],
+      "reviews": 0,
+      "createdAt": "2024-11-21",
+      "updatedAt": "2024-11-21",
+      "image": ""
+    },
+    {
+      "id": 8,
+      "name": "Hài Kịch: Vụ Án Dởm",
+      "categoryId": 8,
+      "description": "Một câu chuyện hài hước về một vụ án đầy tình huống dở khóc dở cười.",
+      "price": 22000,
+      "stock": 22,
+      "rating": [],
+      "reviews": 0,
+      "createdAt": "2024-11-21",
+      "updatedAt": "2024-11-21",
+      "image": ""
+    },
+    {
+      "id": 9,
+      "name": "Kinh Dị: Ngôi Nhà Ma Ám",
+      "categoryId": 9,
+      "description": "Câu chuyện kinh dị về một ngôi nhà chứa đầy bí ẩn và những điều kỳ quái.",
+      "price": 27000,
+      "stock": 14,
+      "rating": [],
+      "reviews": 0,
+      "createdAt": "2024-11-21",
+      "updatedAt": "2024-11-21",
+      "image": ""
     }
   ],
   "orders": [],
-  "order_details": []
+  "order_details": [],
+  "comments": []
 }

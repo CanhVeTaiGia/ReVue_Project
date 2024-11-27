@@ -34,7 +34,15 @@ export const userModule = {
       { limit, page, sort, search}
     ) {
       try {
-        const res = await getUsersApi(limit, page, sort, search); 
+        const res = await fetchUsersApi(); 
+        commit("SET_USERS", res);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async getUsers({commit}){
+      try {
+        const res = await getUsersApi();
         commit("SET_USERS", res);
       } catch (error) {
         console.error(error);

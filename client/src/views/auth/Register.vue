@@ -4,9 +4,9 @@
   >
     <form
       @submit.prevent="handleSignUp"
-      class="p-[16px] w-2/5 rounded bg-black border border-[#111]"
+      class="p-[16px] w-3/5 rounded bg-black border border-[#111]"
     >
-      <h2 class="text-[40px] font-[600] p-[16px] text-center"> Đăng ký </h2>
+      <h2 class="text-[40px] font-[600] p-[16px] text-center"> Sign Up </h2>
 
       <div class="grid grid-cols-2 w-full">
         <div
@@ -27,7 +27,7 @@
             v-if="!user[field.name] && empty[field.name]"
             class="text-[red] text-[14px] bottom-[-30px] absolute"
           >
-            {{ field.label }} không được để trống
+            {{ field.label }} cannot be empty
           </p>
           <p
             v-else-if="
@@ -37,7 +37,7 @@
             "
             class="text-[red] text-[12px] bottom-[-30px] absolute"
           >
-            Số điện thoại phải bắt đầu bằng 0 và có 11 ký tự
+            The phone number must start with 0 and be 11 digits long
           </p>
           <p
             v-else-if="
@@ -47,7 +47,7 @@
             "
             class="text-[red] text-[14px] bottom-[-30px] absolute"
           >
-            Email không đúng định dạng
+            Invalid email format
           </p>
           <p
             v-else-if="
@@ -61,9 +61,9 @@
           </p>
           <p
             v-if="field.name === 'confirmpassword' && wrongrepassword"
-            class="text-[red] text-[14px] bottom-[-30px] absolute"
+            class="text-[red] text-[12px] bottom-[-30px] absolute"
           >
-            Mật khẩu không đúng
+            Passwords do not match
           </p>
         </div>
       </div>
@@ -87,21 +87,22 @@
           v-if="!user[field.name] && empty[field.name]"
           class="text-[red] text-[14px] bottom-[-30px] absolute"
         >
-          {{ field.label }} không được để trống
+          {{ field.label }} cannot be empty
         </p>
       </div>
 
       <div class="px-[50px] relative mt-[50px] mb-[30px]">
         <button
+        type="submit"
           class="bg-[#08f] text-[16px] font-[700] text-black rounded w-full p-[10px]"
         >
-          Đăng ký
+          Sign Up
         </button>
       </div>
 
       <div class="flex px-[50px] justify-center gap-1">
-        <p class="text-[#bbb]">Đã có tài khoản</p>
-        <p @click="toLogin" class="hover:underline cursor-pointer">Đăng nhập</p>
+        <p class="text-[#bbb]">Already have an account</p>
+        <p @click="toLogin" class="hover:underline cursor-pointer">Login</p>
       </div>
     </form>
   </div>
@@ -131,13 +132,13 @@ const validatePassword = (password) => {
   const specialCharPattern = /[!@#$%^&*(),.?":{}|<>]/;
 
   if (password.length < minLength) {
-    passwordError.value = `Mật khẩu phải có ít nhất ${minLength} ký tự.`;
+    passwordError.value = `Password must be at least ${minLength} characters long.`;
   } else if (!letterPattern.test(password)) {
-    passwordError.value = "Mật khẩu phải chứa ít nhất một chữ cái.";
+    passwordError.value = "Password must contain at least one letter.";
   } else if (!numberPattern.test(password)) {
-    passwordError.value = "Mật khẩu phải chứa ít nhất một chữ số.";
+    passwordError.value = "Password must contain at least one number.";
   } else if (!specialCharPattern.test(password)) {
-    passwordError.value = "Mật khẩu phải chứa ít nhất một ký tự đặc biệt.";
+    passwordError.value = "Password must contain at least one special character.";
   } else {
     passwordError.value = "";
     return true;
@@ -203,7 +204,7 @@ const handleSignUp = async () => {
   );
   if (res.data.length > 0) {
     return Swal.fire({
-      title: "Tài khoản đã tồn tại!",
+      title: "Account already exists!",
       icon: "error",
     });
   }
@@ -226,7 +227,8 @@ const handleSignUp = async () => {
     updated_at: formatDate(new Date()),
   };
   Swal.fire({
-    title: "Đăng ký thành công!",
+    title: "Success!",
+    text: "Signed up successfully",
     icon: "success",
     confirmButtonText: "OK",
   }).then((res) => {
@@ -238,32 +240,32 @@ const handleSignUp = async () => {
 };
 
 const fields = [
-  { name: "firstname", label: "Họ", type: "text", placeholder: "Nhập họ" },
-  { name: "lastname", label: "Tên", type: "text", placeholder: "Nhập tên" },
-  { name: "email", label: "Email", type: "email", placeholder: "Nhập email" },
+  { name: "firstname", label: "First Name", type: "text", placeholder: "Enter first name" },
+  { name: "lastname", label: "Last Name", type: "text", placeholder: "Enter last name" },
+  { name: "email", label: "Email", type: "email", placeholder: "Enter email" },
   {
     name: "phone",
-    label: "Số điện thoại",
+    label: "Phone Number",
     type: "text",
-    placeholder: "Nhập số điện thoại",
+    placeholder: "Enter phone number",
   },
   {
     name: "password",
-    label: "Mật khẩu",
+    label: "Password",
     type: "password",
-    placeholder: "Nhập mật khẩu",
+    placeholder: "Enter password",
   },
   {
     name: "confirmpassword",
-    label: "Xác nhận mật khẩu",
+    label: "Confirm Password",
     type: "password",
-    placeholder: "Nhập lại mật khẩu",
+    placeholder: "Confirm password",
   },
   {
     name: "address",
-    label: "Địa chỉ",
+    label: "Address",
     type: "text",
-    placeholder: "Nhập địa chỉ",
+    placeholder: "Enter address",
   },
 ];
 </script>
