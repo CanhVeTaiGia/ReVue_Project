@@ -92,8 +92,8 @@
               </div>
               <h3 class="text-xl font-semibold mb-4">Visit Us</h3>
               <p class="text-gray-600">
-                123 Business Street<br />
-                New York, NY 10001
+                5 - Vu Trong Khanh<br />
+                Ha Dong, Ha Noi
               </p>
             </div>
             <div class="text-center">
@@ -102,8 +102,8 @@
               </div>
               <h3 class="text-xl font-semibold mb-4">Call Us</h3>
               <p class="text-gray-600">
-                +1 (555) 123-4567<br />
-                Mon-Fri, 9am-6pm
+                +84 947 721 353<br />
+                Mon-Fri, 8am-6pm
               </p>
             </div>
             <div class="text-center">
@@ -112,8 +112,8 @@
               </div>
               <h3 class="text-xl font-semibold mb-4">Email Us</h3>
               <p class="text-gray-600">
-                info@company.com<br />
-                support@company.com
+                cvtg@company.com<br />
+                cvtg@company.com
               </p>
             </div>
           </div>
