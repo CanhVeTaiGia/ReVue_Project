@@ -10,7 +10,7 @@
         <h2 className="text-2xl font-bold mb-4">
           <slot name="header"></slot>
         </h2>
-        <form @submit.prevent="handleSubmit" className="grid grid-cols-2 gap-4">
+        <form @submit.prevent="handleSubmit" className="flex flex-col gap-4">
           <div className="col-span-1">
             <label htmlFor="name" className="block  text-sm font-medium"
               >Name</label
@@ -27,21 +27,8 @@
               The category is already exited
             </div>
           </div>
-          <div className="col-span-1">
-            <label htmlFor="status" className="block text-sm font-medium"
-              >Status</label
-            >
-            <select
-              v-model="inputCategory.status"
-              id="status"
-              name="status"
-              className="mt-1 cursor-pointer  outline-none p-2 border rounded w-full"
-            >
-              <option :value="true">Open</option>
-              <option :value="false">Block</option>
-            </select>
-          </div>
-          <div className="col-span-2">
+          
+          <div className="">
             <label htmlFor="description" className="block text-sm font-medium"
               >Description</label
             >

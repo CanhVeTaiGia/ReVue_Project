@@ -26,7 +26,7 @@
       }}
     </td>
     <td class="px-4 py-2">{{ props.item.stock || "Chưa cập nhật" }}</td>
-    <td class="px-4 py-2">{{
+    <td v-if="props.item.createdAt" class="px-4 py-2">{{
       props.item.createdAt.split("-").reverse().join("/") || "Chưa cập nhật"
     }}</td>
 

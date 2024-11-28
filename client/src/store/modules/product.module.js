@@ -60,7 +60,7 @@ export const productModule = {
     async createProduct({ commit }, product) {
       try {
         const res = await createProductApi(product);
-        commit("CREATE_PRODUCT", [...state.products, res]);
+        commit("CREATE_PRODUCT", res);
       } catch (error) {
         console.error(error);
       }

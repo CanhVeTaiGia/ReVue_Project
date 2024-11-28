@@ -5,7 +5,8 @@
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
         <div
         v-if="categories"
-          v-for="category in categories.slice(0, 4)"
+        v-for="category in categories.slice(0, 4)"
+        @click="toProduct(category.id)"
           class="bg-white rounded-lg cursor-pointer shadow-md p-6 text-center hover:shadow-lg transition duration-300"
         >
           <!-- <component
@@ -20,10 +21,15 @@
 </template>
 <script setup>
 import { computed, onMounted } from "vue";
+import { useRouter } from "vue-router";
 import { useStore } from "vuex";
 
 const store = useStore();
+const router = useRouter();
 const categories = computed(() => store.getters.getCategories);
+const toProduct = (id) => {
+  router.push(`/products/${id}`)
+}
 onMounted(() => {
   store.dispatch("fetchCategories");
 });

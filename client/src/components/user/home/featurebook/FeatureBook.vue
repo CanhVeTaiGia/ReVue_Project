@@ -1,6 +1,7 @@
 <template>
-  <div class="bg-white rounded-lg shadow-md overflow-hidden">
+  <div class="bg-white rounded-lg cursor-pointer shadow-md overflow-hidden">
     <img
+    @click="() => router.push(`/product-detail/${props.item.id}`)"
       :src="
         props.item.image ||
         'https://firebasestorage.googleapis.com/v0/b/data-cvtg.appspot.com/o/productImg%2Fimages.png?alt=media&token=5b60ae32-8a5c-4578-bf19-a797279d041a'
@@ -9,10 +10,10 @@
       class="w-full h-64 object-cover"
     />
     <div class="p-4">
-      <h3 class="font-semibold text-lg mb-2">{{ props.item.name }}</h3>
-      <p v-if="category" class="text-gray-600 mb-2">{{ category.name }}</p>
+      <h3 @click="() => router.push(`/product-detail/${props.item.id}`)" class="font-semibold text-lg mb-2">{{ props.item.name }}</h3>
+      <p @click="() => router.push(`/product-detail/${props.item.id}`)" v-if="category" class="text-gray-600 mb-2">{{ category.name }}</p>
       <div class="flex justify-between items-center">
-        <span class="font-bold text-blue-600">{{
+        <span @click="() => router.push(`/product-detail/${props.item.id}`)" class="font-bold text-blue-600">{{
           props.item.price.toLocaleString("vi", {
             style: "currency",
             currency: "VND",
@@ -32,6 +33,7 @@
 import axios from "axios";
 import Swal from "sweetalert2";
 import { computed, onMounted, watch } from "vue";
+import { useRouter } from "vue-router";
 import { useStore } from "vuex";
 
 const props = defineProps(["item"]);
@@ -39,6 +41,7 @@ const token = computed(() => localStorage.getItem("token"));
 const store = useStore();
 const category = computed(() => store.getters.getCategory);
 const user = computed(() => store.getters.getUser);
+const router = useRouter();
 
 const handleAddToCart = async () => {
   if (user.value) {

@@ -50,7 +50,10 @@
           </button>
         </div>
       </div>
-      <button class="mt-4 md:mt-0 text-red-600 hover:text-red-800">
+      <button
+        @click="deleteCart(props.item.id)"
+        class="mt-4 md:mt-0 text-red-600 hover:text-red-800"
+      >
         <font-awesome-icon icon="fa-solid fa-trash" class="size-6" />
       </button>
     </div>
@@ -66,6 +69,8 @@ const router = useRouter();
 const store = useStore();
 const props = defineProps(["item"]);
 const product = ref(null);
+const token = computed(() => localStorage.getItem("token"));
+const user = computed(() => store.getters.getUser);
 
 watch(
   () => props.item.productId,
@@ -80,6 +85,9 @@ onMounted(async () => {
   if (!product.value) {
     await store.dispatch("getProduct", props.item.productId);
     product.value = store.getters.getProduct;
+  }
+  if (token.value) {
+    await store.dispatch("fetchUser", token.value);
   }
 });
 const handleIncrease = () => {
@@ -103,6 +111,32 @@ const handleDecrease = () => {
       confirmButtonText: "OK",
     });
   }
+};
+
+const deleteCart = (id) => {
+  const cart = user.value.cart;
+  const cartProduct = cart.find((item) => item.id === id);
+
+  Swal.fire({
+    title: "Bạn có chắc muốn xóa sản phẩm này khỏi giỏ hàng?",
+    icon: "question",
+    showCancelButton: true,
+    confirmButtonText: "Đồng ý",
+    cancelButtonText: "Hủy",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      store.dispatch("updateUser", {
+        ...user.value,
+        cart: user.value.cart.filter((item) => item.id != id),
+      });
+      // return console.log(product.value.stock, cartProduct);
+
+      store.dispatch("updateProduct", {
+        ...product.value,
+        stock: product.value.stock + cartProduct.quantity,
+      });
+    }
+  });
 };
 </script>
 <style scoped></style>

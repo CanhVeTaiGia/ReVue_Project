@@ -16,7 +16,8 @@
         />
         <div class="p-8">
           <h3 class="text-2xl font-bold mb-2">{{ bookOfTheDay.name }}</h3>
-          <p v-if="category" class="text-gray-600 mb-4">{{ category }}</p>
+          <p v-if="category" class="text-gray-600 mb-2">{{ category }}</p>
+          <p class="text-gray-600 mb-2" >{{ bookOfTheDay.author }}</p>
           <p class="text-gray-800 mb-4">{{ bookOfTheDay.description }}</p>
           <div class="flex items-center mb-4">
             <span class="text-yellow-400 mr-1"
@@ -57,8 +58,8 @@ onMounted(() => {
 const books = computed(() => store.getters.getProducts);
 
 const bookOfTheDay = computed(() => {
-  if (books.value) {
-    return books.value[Math.floor(Math.random() * books.value.length)];
+  if (books.value && books.value.length > 0) {
+    return books.value[0]; 
   }
 });
 watch(bookOfTheDay, async (newValue) => {

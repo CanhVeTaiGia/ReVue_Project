@@ -13,7 +13,7 @@ const routes = [
       import(/*webChunkName: "register"*/ "@/views/auth/Register.vue"),
   },
   {
-    path: "",
+    path: "/",
     name: "main",
     redirect: "",
     component: () =>
@@ -34,12 +34,20 @@ const routes = [
           ),
       },
       {
-        path: "edit-profile",
-        name: "edit-profile",
+        path: "profile",
+        name: "profile",
         component: () =>
-          import(
-            /* webpackChunkName: "edit-profile"*/ "@/layouts/user/EditProfile.vue"
-          ),
+          import(/* webpackChunkName: "profile"*/ "@/layouts/user/Profile.vue"),
+        children: [
+          {
+            path: "",
+            name: "edit-profile",
+            component: () =>
+              import(
+                /* webpackChunkName: "edit-profile"*/ "@/components/user/profile/EditProfile.vue"
+              ),
+          }
+        ]
       },
       {
         path: "product-detail/:id",
@@ -70,6 +78,27 @@ const routes = [
           import(
             /* webpackChunkName: "proceed-order"*/ "@/layouts/user/ProceedOrder.vue"
           ),
+      },{
+        path: "products/:id",
+        name: "productId",
+        component: () =>
+          import(
+            /* webpackChunkName: "products"*/ "@/layouts/user/Products.vue"
+          ),
+      },
+      {
+        path: "products",
+        name: "allProducts",
+        component: () =>
+          import(
+            /* webpackChunkName: "products"*/ "@/layouts/user/Products.vue"
+          ),
+      },
+      {
+        path: "about-us",
+        name: "about-us",
+        component: () =>
+          import(/* webpackChunkName: "about-us"*/ "@/layouts/user/AboutUs.vue"),
       }
     ],
   },
@@ -124,6 +153,7 @@ const routes = [
             /* webpackChunkName: "order-manager"*/ "@/layouts/admin/OrderManager.vue"
           ),
       },
+      
     ],
   },
   {

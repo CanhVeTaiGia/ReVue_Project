@@ -73,9 +73,9 @@
         <router-link to="/category" class="text-gray-600 hover:text-blue-600"
           >Categories</router-link
         >
-        <router-link to="/new-release" class="text-gray-600 hover:text-blue-600"
+        <!-- <router-link to="/new-release" class="text-gray-600 hover:text-blue-600"
           >New Releases</router-link
-        >
+        > -->
         <router-link to="/products" class="text-gray-600 hover:text-blue-600"
           >Products</router-link
         >
@@ -88,7 +88,7 @@
 </template>
 <script setup>
 import Swal from "sweetalert2";
-import { computed, onMounted, ref } from "vue";
+import { computed, onMounted, ref, watch } from "vue";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
 
@@ -109,7 +109,7 @@ const logout = () => {
   });
 };
 const toProfile = () => {
-  router.push("/edit-profile");
+  router.push("/profile");
 };
 const items = ref([
   {
@@ -131,5 +131,20 @@ onMounted(() => {
     store.dispatch("fetchUser", token.value);
   }
 });
+watch(() => user.value, () => {
+  if(!user.value.status){
+    Swal.fire({
+      title: "Your account has been banned",
+      text: "Please contact with admin to continue",
+      icon: "error",
+      confirmButtonText: "Okay",
+    }).then((res) => {
+      if (res.isConfirmed) {
+        localStorage.removeItem("token");
+        router.push("/login");
+      }
+    })
+  }
+})
 </script>
 <style scoped></style>

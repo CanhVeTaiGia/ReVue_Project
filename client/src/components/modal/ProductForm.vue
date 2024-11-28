@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full justify-center items-center bg-[#000000bb] flex fixed top-0 left-0 h-screen"
+    class="w-full justify-center items-center bg-[#0000002b] flex fixed top-0 left-0 h-screen"
   >
     <form @submit.prevent="handleSubmit" class="w-1/2 p-4 bg-white rounded">
       <div class="flex justify-between">
@@ -12,8 +12,8 @@
         >
       </div>
       <div class="grid grid-cols-3 gap-4 my-4">
-        <div class="flex justify-center row-span-3 items-center">
-          <div class="size-[80px] relative">
+        <div class="flex justify-center row-span-4 items-center">
+          <div class="relative">
             <img
               class="size-full rounded border"
               :src="
@@ -22,49 +22,73 @@
               "
               alt=""
             />
-            <label
-              for="image"
-              class="p-2 cursor-pointer border flex justify-center items-center right-[-15px] bottom-[-15px] bg-white rounded-full absolute"
-            >
-            <input id="image" hidden type="file" @change="handleImageUpload" />
-              <font-awesome-icon icon="fa-solid fa-camera"></font-awesome-icon>
-            </label>
           </div>
         </div>
-        <input
-          v-model="input.name"
-          placeholder="Product name"
-          class="border outline-none px-4 rounded py-2"
-          type="text"
-        />
-        <input
-          v-model="input.price"
-          placeholder="Product price"
-          :min="1000"
-          class="border outline-none px-4 rounded py-2"
-          type="number"
-        />
-        <select
-          v-model="input.categoryId"
-          class="border px-4 py-2 outline-none rounded"
-          v-if="categories"
-        >
-          <option
-            v-for="(item, index) in categories.filter((item) => item.status)"
-            :key="index"
-            :value="item.id"
-            >{{ item.name }}</option
+        <div class="flex flex-col gap-2">
+          <label class="font-[600]" for="">Link ảnh</label>
+          <input
+            class="border outline-none px-4 rounded py-2"
+            v-model="input.image"
+            placeholder="Link ảnh"
+            type="text"
+          />
+          <!-- <button ></button> -->
+        </div>
+        <div class="flex flex-col gap-2">
+          <label for="" class="font-[600]"> Tên </label>
+          <input
+            v-model="input.name"
+            placeholder="Product name"
+            class="border outline-none px-4 rounded py-2"
+            type="text"
+          />
+        </div>
+        <div class="flex flex-col gap-2">
+          <label for="" class="font-[600]">Giá</label>
+          <input
+            v-model="input.price"
+            placeholder="Product price"
+            :min="1000"
+            class="border outline-none px-4 rounded py-2"
+            type="number"
+          />
+        </div>
+        <div class="flex flex-col gap-2">
+          <label for="" class="font-[600]">Thể loại</label>
+          <select
+            v-model="input.categoryId"
+            class="border px-4 py-2 outline-none rounded"
+            v-if="categories"
           >
-        </select>
-        <input
-          v-model="input.stock"
-          placeholder="Product stock"
-          :min="0"
-          class="border outline-none px-4 rounded py-2"
-          type="number"
-        />
+            <option
+              v-for="(item, index) in categories.filter((item) => item.status)"
+              :key="index"
+              :value="item.id"
+              >{{ item.name }}</option
+            >
+          </select>
+        </div>
+        <div class="flex flex-col gap-2">
+          <label class="font-[600]" for="">Số lượng</label>
+          <input
+            v-model="input.stock"
+            placeholder="Product stock"
+            :min="0"
+            class="border outline-none px-4 rounded py-2"
+            type="number"
+          />
+        </div>
+        <div class="flex flex-col gap-2">
+          <label class="font-[600]" for="">Tác giả</label>
+          <input
+            v-model="input.author"
+            placeholder="Tác giả"
+            class="border outline-none px-4 rounded py-2"
+            type="text"
+          />
+        </div>
         <textarea
-        v-model="input.description"
+          v-model="input.description"
           class="grid row-span-2 col-span-2 border rounded resize-none p-2 outline-none"
         ></textarea>
       </div>
@@ -79,8 +103,8 @@
 <script setup>
 import { computed, onMounted, reactive } from "vue";
 import { useStore } from "vuex";
-import { ref as storageRef, getDownloadURL, uploadBytes } from "firebase/storage";
-import storage from "@/firebase/config";
+import Swal from "sweetalert2";
+import axios from "axios";
 
 const props = defineProps(["id", "hideForm", "product"]);
 const img = reactive({
@@ -96,7 +120,7 @@ const categories = computed(() => store.getters.getCategories);
 const getToday = () => {
   const today = new Date();
   const dd = String(today.getDate()).padStart(2, "0");
-  const mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+  const mm = String(today.getMonth() + 1).padStart(2, "0");
   const yyyy = today.getFullYear();
   return `${yyyy}-${mm}-${dd}`;
 };
@@ -105,21 +129,57 @@ const input = reactive({
   categoryId: props.id ? props.product?.categoryId : 1,
   price: props.id ? props.product?.price : 0,
   stock: props.id ? props.product?.stock : 0,
-  description: props.product?.description || "",
+  description: props.id ? props.product?.description : "",
   image: props.id ? props.product?.image : "",
-  createAt: props.id ? props.product?.createAt : getToday(),
-  updateAt: props.id ? props.product?.updateAt : getToday(),
+  createdAt: props.id ? props.product?.createdAt : getToday(),
+  updatedAt: props.id ? props.product?.updateAt : getToday(),
+  author: props.id ? props.product?.author : "",
 });
-const handleAdd = () => {
+const handleAdd = async () => {
+  if (
+    !input.name ||
+    !input.categoryId ||
+    !input.price ||
+    !input.stock ||
+    !input.description ||
+    !input.image ||
+    !input.author
+  ) {
+    return Swal.fire({
+      title: "Thông báo",
+      text: "Bạn cần nhập đầy đủ thông tin!",
+      icon: "warning",
+      confirmButtonText: "OK",
+    }).then(res => {
+      if (res.isConfirmed) {
+        return
+      }
+    })
+  }
+  const res = await axios.get(`http://localhost:8080/products?name_like=${input.name}`);
+  if (res.data.length > 0) {
+    return Swal.fire({
+      title: "Thông báo",
+      text: "Sản phẩm đã tồn tại!",
+      icon: "warning",
+      confirmButtonText: "OK",
+    }).then(res => {
+      if (res.isConfirmed) {
+        return
+      }
+    })
+  }
   const newInput = {
-    ...input
+    ...input,
   };
-  store.dispatch("addProduct", newInput);
+  console.log(newInput);
+
+  store.dispatch("createProduct", newInput);
   props.hideForm();
 };
 const handleEdit = () => {
   console.log(props.id);
-  
+
   const updatedInput = {
     id: props.id,
     name: input.name,
@@ -128,8 +188,9 @@ const handleEdit = () => {
     stock: input.stock,
     description: input.description,
     image: input.image,
-    createAt: input.createAt,
-    updateAt: getToday(),
+    createdAt: input.createAt,
+    updatedAt: getToday(),
+    author: input.author,
   };
   store.dispatch("updateProduct", updatedInput);
   props.hideForm();
@@ -139,19 +200,6 @@ const handleSubmit = () => {
     handleEdit();
   } else {
     handleAdd();
-  }
-};
-
-const handleImageUpload = async (event) => {
-  const file = event.target.files[0];
-  if (!file) return;
-  const snapshot = storageRef(storage, 'productImg/' + file.name);
-  try {
-    await uploadBytes(snapshot, file);
-    const downloadURL = await getDownloadURL(snapshot);
-    input.image = downloadURL;
-  } catch (error) {
-    console.error("Error uploading image: ", error);
   }
 };
 </script>

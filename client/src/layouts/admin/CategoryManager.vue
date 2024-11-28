@@ -67,7 +67,7 @@
               </td>
               <td class="px-4 py-2">
                 <button
-                  @click="changeCategoryStatus(item)"
+                  
                   :class="{
                     'text-green-600 font-bold border border-green-600 px-2 py-1 rounded-xl':
                       item.status,
@@ -103,7 +103,7 @@
         </table>
 
         <div
-          v-if="categories && categories.length > limit"
+          v-if="categories && categories.length > limit && filtercategories.length > limit"
           class="flex justify-center space-x-2 mt-4"
         >
           <button
@@ -136,14 +136,14 @@
           </button>
           <button
             @click="nextPage"
-            :disabled="currentPage >= categories.length - limit"
+            :disabled="currentPage >= filtercategories.length - limit"
             :class="[
               'py-1 border rounded',
               {
                 'bg-gray-400 cursor-not-allowed opacity-50':
-                  currentPage >= categories.length - limit,
+                  currentPage >= filtercategories.length - limit,
                 'bg-blue-500 text-white':
-                  currentPage < categories.length - limit,
+                  currentPage < filtercategories.length - limit,
               },
             ]"
           >
@@ -226,24 +226,6 @@ const prevPage = () => {
   }
 };
 
-const changeCategoryStatus = (category) => {
-  Swal.fire({
-    title: `Bạn có chắc muốn ${
-      category.status ? "khóa" : "mở khóa"
-    } danh mục này!`,
-    icon: "warning",
-    confirmButtonText: "OK",
-    showCancelButton: true,
-    cancelButtonText: "Hủy",
-  }).then((res) => {
-    if (res.isConfirmed) {
-      store.dispatch("updateCategory", {
-        ...category,
-        status: !category.status,
-      });
-    }
-  });
-};
 
 const deleteCategory = (id) => {
   Swal.fire({

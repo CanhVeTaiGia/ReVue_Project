@@ -65,7 +65,7 @@
           </tbody>
         </table>
         <div
-          v-if="products && products.length > limit"
+          v-if="filteredProducts && products.length > limit"
           class="flex justify-center space-x-2 mt-4"
         >
           <button
@@ -85,7 +85,7 @@
             ></font-awesome-icon>
           </button>
           <button
-            v-for="(page, index) in Math.ceil(products.length / 8)"
+            v-for="(page, index) in Math.ceil(filteredProducts.length / 8)"
             :key="page"
             @click="currentPage = index * limit"
             :class="[
@@ -99,14 +99,14 @@
           </button>
           <button
             @click="nextPage"
-            :disabled="currentPage >= categories.length - limit"
+            :disabled="currentPage >= filteredProducts.length - limit"
             :class="[
               'py-1 border rounded',
               {
                 'bg-gray-400 cursor-not-allowed opacity-50':
-                  currentPage >= products.length - limit,
+                  currentPage >= filteredProducts.length - limit,
                 'bg-blue-500 text-white':
-                  currentPage < products.length - limit,
+                  currentPage < filteredProducts.length - limit,
               },
             ]"
           >

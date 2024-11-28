@@ -38,6 +38,7 @@
             }}</span>
             <!-- <span class="text-lg text-gray-500 line-through"></span> -->
           </div>
+         
 
           <div class="flex items-center mb-6">
             <button
@@ -55,6 +56,11 @@
               ></font-awesome-icon>
               Add to Wishlist
             </button> -->
+          </div>
+          <div class="border-t-[1px] w-full p-4">
+            <p v-if="product">
+              Mô tả: {{ product.description }}
+            </p>
           </div>
         </div>
       </div>

@@ -1,21 +1,14 @@
 {
   "users": [
     {
-      "firstname": "John",
-      "lastname": "Doe",
+      "firstname": "Hoàng",
+      "lastname": "Mai",
       "email": "a@gmail.com",
-      "password": "$2a$10$u1CJE.c5sT5kRuPnk5yMsuqbbP47k/YNTZtyS9xu3fyl/tFQLPO9e",
+      "password": "$2a$10$2ZxU4pi4zqBpI3TZD6HqTeYOm6DCPQOMNd3XHNL88VwdJ/SvyDfD.",
       "id": 84903028,
-      "avatar": "",
+      "avatar": "https://cdn-icons-png.flaticon.com/512/6858/6858504.png",
       "role": true,
-      "cart": [
-        {
-          "id": 9691551106859,
-          "productId": 2,
-          "price": 30000,
-          "quantity": 1
-        }
-      ],
+      "cart": [],
       "status": true,
       "created_at": "2024-08-15",
       "updated_at": "",
@@ -225,6 +218,12 @@
       "name": "Chính Trị",
       "description": "Sách chính trị phân tích các vấn đề xã hội, nhà nước, và các mô hình quyền lực, lãnh đạo trên toàn cầu.",
       "status": true
+    },
+    {
+      "name": "Manga",
+      "status": true,
+      "description": "Manga là truyện tranh",
+      "id": 11
     }
   ],
   "products": [
@@ -239,7 +238,8 @@
       "reviews": 0,
       "createdAt": "2024-11-21",
       "updatedAt": "2024-11-21",
-      "image": ""
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzTpzOAg64oCZabmL0MgEFuqI4CqoAMgN6LA&s",
+      "author": "Nguyễn Hoàng Ân"
     },
     {
       "id": 2,
@@ -252,7 +252,8 @@
       "reviews": 0,
       "createdAt": "2024-11-21",
       "updatedAt": "2024-11-21",
-      "image": ""
+      "image": "https://upload.wikimedia.org/wikipedia/vi/4/41/Thor-272.jpg",
+      "author": "Martin Goodman"
     },
     {
       "id": 3,
@@ -260,12 +261,13 @@
       "categoryId": 3,
       "description": "Câu chuyện về một thế giới ảo, nơi những game thủ phải chiến đấu để sống sót.",
       "price": 35000,
-      "stock": 30,
+      "stock": 23,
       "rating": [],
       "reviews": 0,
       "createdAt": "2024-11-21",
       "updatedAt": "2024-11-21",
-      "image": ""
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSal7ooGLN8TL8O1rBuWU1ycB1oCFjYnuRcoQ&s",
+      "author": "Kawahara Reki"
     },
     {
       "id": 4,
@@ -278,7 +280,8 @@
       "reviews": 0,
       "createdAt": "2024-11-21",
       "updatedAt": "2024-11-21",
-      "image": ""
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPQaPMLtlNgIn9pq55fzji_P7DpHyBT3cY_w&s",
+      "author": "Arthur C. Clarke"
     },
     {
       "id": 5,
@@ -291,7 +294,8 @@
       "reviews": 0,
       "createdAt": "2024-11-21",
       "updatedAt": "2024-11-21",
-      "image": ""
+      "image": "https://pos.nvncdn.com/fd5775-40602/ps/20221024_CvrKfJyKZjXSwA8oDj554MSx.jpg",
+      "author": "Edward Gibbon"
     },
     {
       "id": 6,
@@ -304,7 +308,8 @@
       "reviews": 0,
       "createdAt": "2024-11-21",
       "updatedAt": "2024-11-21",
-      "image": ""
+      "image": "https://img.wattpad.com/cover/377324685-256-k583257.jpg",
+      "author": "Yuan Man"
     },
     {
       "id": 7,
@@ -317,7 +322,8 @@
       "reviews": 0,
       "createdAt": "2024-11-21",
       "updatedAt": "2024-11-21",
-      "image": ""
+      "image": "https://laz-img-sg.alicdn.com/p/52ac5e6d9b98126d20c36788d894b7c4.jpg",
+      "author": "Quan Huy"
     },
     {
       "id": 8,
@@ -325,12 +331,13 @@
       "categoryId": 8,
       "description": "Một câu chuyện hài hước về một vụ án đầy tình huống dở khóc dở cười.",
       "price": 22000,
-      "stock": 22,
+      "stock": 21,
       "rating": [],
       "reviews": 0,
       "createdAt": "2024-11-21",
       "updatedAt": "2024-11-21",
-      "image": ""
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQr5TLcrQN_mum_cnoNadfUsO_sXbNNrKUeZQ&s",
+      "author": "Ngô Bá Anh"
     },
     {
       "id": 9,
@@ -343,10 +350,11 @@
       "reviews": 0,
       "createdAt": "2024-11-21",
       "updatedAt": "2024-11-21",
-      "image": ""
+      "image": "https://img-cache.coccoc.com/image2?i=1&l=9/294730364",
+      "author": "Vũ Thái Huy"
     }
   ],
   "orders": [],
-  "order_details": [],
+  "orders_detail": [],
   "comments": []
 }

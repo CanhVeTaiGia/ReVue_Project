@@ -20,6 +20,7 @@
 </template>
 
 <script setup>
+import Swal from "sweetalert2";
 import { computed, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import { useStore } from "vuex";
@@ -35,11 +36,21 @@ const newRoute = computed(() => {
 
 const token = computed(() => JSON.parse(localStorage.getItem("token") || null));
 
+const user = computed(() => store.getters.getUser);
 onMounted(async () => {
   await store.dispatch("fetchUser", token.value);
+  if(!user.value.role){
+    Swal.fire({
+      title: "Warning",
+      text: "You are not authorized to access this page.",
+      icon: "warning",
+      confirmButtonText: "Back to Homepage",
+    })
+  }
 });
-const user = computed(() => store.getters.getUser);
+
 console.log(user.value);
+
 </script>
 
 <style></style>

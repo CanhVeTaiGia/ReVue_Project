@@ -4,10 +4,12 @@
       <h1 class="text-3xl font-bold text-gray-800 mb-8">Your Cart</h1>
 
       <!-- Cart Items -->
-      <div v-if="user && user.cart && user.cart.length > 0" class="flex flex-col lg:flex-row gap-8">
+      <div
+        v-if="user && user.cart && user.cart.length > 0"
+        class="flex flex-col lg:flex-row gap-8"
+      >
         <!--  -->
         <EachCart
-          
           v-for="(item, index) in user.cart"
           :item="item"
           :key="index"
@@ -31,7 +33,8 @@
                 }}</span>
               </div>
             </div>
-            <button @click="toProceed"
+            <button
+              @click="toProceed"
               class="w-full bg-blue-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-blue-700 transition duration-300 mt-6"
             >
               Proceed to Checkout
@@ -80,12 +83,13 @@
 </template>
 <script setup>
 import EachCart from "@/components/user/cart/EachCart.vue";
+import Swal from "sweetalert2";
 import { computed, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
 
 const store = useStore();
-const router = useRouter()
+const router = useRouter();
 const token = computed(() => localStorage.getItem("token"));
 const user = computed(() => store.getters.getUser);
 const totalCart = computed(() => {
@@ -100,13 +104,21 @@ const totalCart = computed(() => {
 
 onMounted(() => {
   if (!token.value) {
-    router.push("/login");
+    Swal.fire({
+      title: "Please Login",
+      text: "You need to login to proceed with checkout",
+      icon: "warning",
+    }).then((res) => {
+      if (res.isConfirmed) {
+        router.push("/login");
+      }
+    });
   } else {
     store.dispatch("fetchUser", token.value);
   }
 });
 const toProceed = () => {
   router.push("/proceed-order");
-}
+};
 </script>
 <style scoped></style>
