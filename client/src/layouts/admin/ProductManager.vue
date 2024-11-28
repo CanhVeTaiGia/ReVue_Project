@@ -44,6 +44,7 @@
             <tr>
               <th class="px-4 py-2">Image</th>
               <th class="px-4 py-2">Name</th>
+              <th class="px-4 py-2">Author</th>
               <th class="px-4 py-2">Category mục</th>
               <th class="px-4 py-2">Price</th>
               <th class="px-4 py-2">Stock</th>

@@ -13,10 +13,12 @@
       </div>
     </td>
     <td class="px-4 py-2 max-w-xs">{{ props.item.name || "Chưa cập nhật" }}</td>
+    <td class="px-4 py-2">{{ props.item.author || "Chưa cập nhật" }}</td>
     <td v-if="category" class="px-4 py-2">{{
       category.name || "Chưa cập nhật"
     }}</td>
     <td v-else>Chưa cập nhật</td>
+    
     <td class="px-4 py-2">
       {{
         item.price.toLocaleString("vi", {

@@ -25,17 +25,17 @@
           </div>
         </div>
         <div class="flex flex-col gap-2">
-          <label class="font-[600]" for="">Link ảnh</label>
+          <label class="font-[600]" for="">Image URL</label>
           <input
             class="border outline-none px-4 rounded py-2"
             v-model="input.image"
-            placeholder="Link ảnh"
+            placeholder="Image URL"
             type="text"
           />
           <!-- <button ></button> -->
         </div>
         <div class="flex flex-col gap-2">
-          <label for="" class="font-[600]"> Tên </label>
+          <label for="" class="font-[600]"> Name </label>
           <input
             v-model="input.name"
             placeholder="Product name"
@@ -44,7 +44,7 @@
           />
         </div>
         <div class="flex flex-col gap-2">
-          <label for="" class="font-[600]">Giá</label>
+          <label for="" class="font-[600]">Price</label>
           <input
             v-model="input.price"
             placeholder="Product price"
@@ -54,7 +54,7 @@
           />
         </div>
         <div class="flex flex-col gap-2">
-          <label for="" class="font-[600]">Thể loại</label>
+          <label for="" class="font-[600]">Category</label>
           <select
             v-model="input.categoryId"
             class="border px-4 py-2 outline-none rounded"
@@ -69,7 +69,7 @@
           </select>
         </div>
         <div class="flex flex-col gap-2">
-          <label class="font-[600]" for="">Số lượng</label>
+          <label class="font-[600]" for="">Stock</label>
           <input
             v-model="input.stock"
             placeholder="Product stock"
@@ -79,7 +79,7 @@
           />
         </div>
         <div class="flex flex-col gap-2">
-          <label class="font-[600]" for="">Tác giả</label>
+          <label class="font-[600]" for="">Author</label>
           <input
             v-model="input.author"
             placeholder="Tác giả"
@@ -87,10 +87,14 @@
             type="text"
           />
         </div>
-        <textarea
+        <div class="gap-2 grid row-span-2 col-span-2 ">
+          <label for="">Mô tả</label>
+          <textarea
           v-model="input.description"
-          class="grid row-span-2 col-span-2 border rounded resize-none p-2 outline-none"
+          class="border rounded resize-none p-2 outline-none"
         ></textarea>
+        </div>
+        
       </div>
       <div class="grid col-span-3">
         <button class="px-4 py-2 rounded text-white bg-blue-500"
